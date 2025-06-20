@@ -1,10 +1,33 @@
 // Class representing each user cretaed, handling personal details such as usernames, and passwords
+/* --- TEST USERS ---
+User1: spncr1
+Password: Summer88
+
+User2: spncr2
+Password: Summer66
+ */
 
 public class User {
+    private String username;
+    private String password;
+    private BankAccount account;
 
+    public User (String username, String password, BankAccount account) {
+        this.username = username;
+        this.password = password;
+        this.account = account;
+    }   
 
-
-    void getUsername () { // placeholder for functionality that i'll implement for instances where the system prints messages like Welcome (user) and needs to fetch username from somewhere
-
+    public String getUsername () {
+        return username;
     }
+
+    public String getPassword () {
+        return password;
+    }
+
+    public BankAccount getAccount() {
+        return account;
+    }
+     
 }

@@ -1,6 +1,5 @@
 -- Overview --
 This is a console-based banking system built using Java. The purpose of this project is to simulate basic banking operations in a secure and user-friendly manner. It provides core functionalities such as account creation, login, viewing account balance, depositing and withdrawing money, and exiting the application. The system also applies object-oriented programming principles and prepares for future enhancements such as data persistence, authentication, and GUI support.
-
 This project is designed to help reinforce concepts such as class design, inheritance, encapsulation, exception handling, and clean code structure using separation of concerns.
 
 -- Features to Implement (Initial Phase) --
