@@ -9,7 +9,7 @@ Password: Summer66
 
 public class User {
     private String username;
-    private String password;
+    private String password; //I definitely need a way of covering the user's passoword with "*" once they enter it, so that when it appears on screen it's just "*" instead
     private BankAccount account;
 
     public User (String username, String password, BankAccount account) {

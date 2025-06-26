@@ -15,6 +15,10 @@ public class BankSystem {
 
     //method for handling user input for their choice (once logged in)
     public void userSelection () {
+        if (currentUser == null) {
+            System.out.println("No user has been created yet.");
+            return;
+        }
 
         while (true) {
             printMenu();
@@ -29,8 +33,7 @@ public class BankSystem {
                 case 1: 
                     System.out.println("Your current balance is $" + account.checkBalance());
                     break;
-                case 2: 
-                    System.out.println("How much would you like to deposit? ");
+                case 2:
                     account.deposit();
                     break;
                 case 3:
@@ -38,51 +41,82 @@ public class BankSystem {
                     account.withdraw();
                     break;
                 case 4:
-                    System.out.print("Logging out...");
-                    currentUser = null; // why is this null?
-                    break;
+                    System.out.println("Logging out...");
+                    System.out.println("Have a nice day " + currentUser.getUsername() + " :)"); // could be a placeholder for an emoji or something later
+                    currentUser = null;
+                    return; //returns user to main menu (entry point in Main class)
                 default:
-                    System.out.print("Invalid choice");
+                    System.out.print("Your choice is invalid. Please try again.");
             }
         }
     }
     
     // Account Creation
     public void createAccount() {
-        scanner.nextLine();
         System.out.println("--- Create New Account ---");
+
+        String username;
         
-        System.out.print("Please create a username: ");
-        String username = scanner.nextLine();
+        //this is basic functionality, potential to redirect to the userLogin() method instead, so user can sign in instead of create a new account with a username that already exists
+        while (true) {
+            System.out.print("Please create a username: ");
+            username = scanner.nextLine();
+
+            boolean usernameExists = false;
+            
+            //check if a username already exists in the DB system
+            for (User user : users) {
+                if (user.getUsername().equals(username)) {
+                    System.out.println("A user already exists with username: " + user.getUsername() + "! Please enter a different username.");
+                    usernameExists = true;
+                    break;
+                }
+            }
+
+            if (!usernameExists) {
+                break;
+            }
+        }
         
         System.out.print("Please create a password: ");
         String password = scanner.nextLine();
 
         User newUser = new User(username, password, new BankAccount(scanner));
+        users.add(newUser);
+        this.currentUser = newUser; //sets the user that is currently logged in to current user (in this case a new user to the banking system, they create an account)
 
         //confirmation message for new account creation
         System.out.println("New Account Created Successfully!");
     }
 
-    // 
-    void userLogin() {
-        scanner.nextLine();
-        System.out.println("--- User Login ---");
-        
-        System.out.print("Enter your username: ");
-        String username = scanner.nextLine();
-        
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
+    //User Login (pre-existing user)
+    public boolean userLogin() {
+        //we use isEmpty() to check if the array storing user account information is empty first, and if it is, we yell at the user and tell them to create an account before trying to use login function
+        if (users.isEmpty()) {
+            System.out.println("No users exist in the system yet! You can't log in to any accounts! Please create an account first.");
+            return false;
+        }
 
-        //iterating through list of users to identify if an account has already been created with the username entered by the user as input
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                currentUser = user;
-                System.out.println("Login successful! Welcome" + currentUser.getUsername());
-            } else {
-                System.out.println("Login failed. Please check your credentials");
+        while (true) {
+            System.out.println("--- User Login ---");
+            
+            System.out.print("Enter your username: ");
+            String username = scanner.nextLine();
+
+            System.out.print("Enter your password: ");
+            String password = scanner.nextLine();
+            
+            //iterating through list of users to identify if an account has already been created with the username entered by the user as input
+            for (User user : users) {
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    this.currentUser = user;
+                    System.out.println("Login successful! Welcome " + currentUser.getUsername());
+                    return true;
+                }
             }
+
+            System.out.println("Username or password is incorrect. Please try again.");
+            continue;
         }
     }
 
@@ -92,6 +126,6 @@ public class BankSystem {
         System.out.println("1. Check Balance");
         System.out.println("2. Deposit");
         System.out.println("3. Withdraw");
-        System.out.println("4. Logout");
+        System.out.println("4. Logout & Return to Main Menu");
     }
 }

@@ -6,8 +6,11 @@ public class Main {
     //variable declaration
 
     public static void main(String[] args) {
+        //objects declaration
         Scanner scanner = new Scanner(System.in);
-        
+        BankSystem bankSystem = new BankSystem(scanner);
+
+        while (true) {
         System.out.println("");
         System.out.println("*** Welcome to SimpleBank! ***");
         System.out.println("How may we help you?");
@@ -16,27 +19,27 @@ public class Main {
         System.out.println("");
         System.out.print("Enter a choice (1-3): ");
         int choice = scanner.nextInt();//trailing newline here somewhere (fix later)
-
-        //objects declaration
-        BankSystem bankSystem = new BankSystem(scanner);
+        scanner.nextLine();
 
         switch (choice) {
             case 1: 
                 bankSystem.createAccount();
-                //bankSystem.printMenu();
+                bankSystem.userSelection();
                 break;
             case 2: 
-                bankSystem.userLogin();
-                //bankSystem.printMenu();
+                if (bankSystem.userLogin()) {
+                    bankSystem.userSelection();
+                }
                 break;
             case 3:
-            System.out.println("Exiting...");
-                break;
+                System.out.println("Exiting...");
+                System.out.println("Thank you for choosing SimpleBank!");
+                break;//this doesn't exit now for some reason...?
             default:
-                System.out.println("Invalid input. Please try again.");
+                System.out.println("Your choice is invalid. Please try again.");
         }
-        scanner.close();
     }
+}
 
     static void printMenu() {
         System.out.println("");
