@@ -7,7 +7,6 @@ A simple command-line Java banking application for creating accounts, logging in
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
 - [Folder Structure](#folder-structure)
 - [License](#license)
 - [Author](#author)
