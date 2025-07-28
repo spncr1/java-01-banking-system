@@ -2,9 +2,6 @@
 import java.util.*;
 
 public class Main {
-
-    //variable declaration
-
     public static void main(String[] args) {
         //objects declaration
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +31,7 @@ public class Main {
             case 3:
                 System.out.println("Exiting...");
                 System.out.println("Thank you for choosing SimpleBank!");
-                break;//this doesn't exit now for some reason...?
+                return;//this doesn't exit now for some reason...?
             default:
                 System.out.println("Your choice is invalid. Please try again.");
         }

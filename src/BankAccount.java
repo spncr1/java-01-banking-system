@@ -18,18 +18,17 @@ public class BankAccount {
     //for all account actions, I need to handle non-numeric data inputs too, so that instead of a mismatchexception, a message is just printed to the screen, and the user is redirected to try again
 
     void deposit () {
-        double amount = scanner.nextDouble();
 
         //within this, a try-catch exception would be better suited to handle this, but i don't know how to use one YET, so i won't include it in this program until a later stage to improve it's overall functionality
         while (true) {
             System.out.println("How much would you like to deposit? ");
+            double amount = scanner.nextDouble();
 
             boolean lowerThanZero = false;
 
             if (amount <= 0) {
                 System.out.println("Amount must be greater than zero. Please try again.");
                 lowerThanZero = true;
-                break;
             } 
 
             if (!lowerThanZero) {
@@ -39,21 +38,23 @@ public class BankAccount {
             }
             
         }
-
         
     }
 
     void withdraw () {
-        double amount = scanner.nextDouble();
+        while(true) {
+            System.out.println("How much would you like to withdraw? ");
+            double amount = scanner.nextDouble();
 
-        if (amount <= 0) {
-            System.out.println("Amount must be greater than zero. Please try again.");
-        } else if (amount > balance) {
-            System.out.print("Your withdrawal declined due to insufficient funds. Please try again.");
-        } else if (balance > amount) {
-            balance = balance - amount;
-            System.out.println("You withdrew $" + amount + ". Your new balance is: $" + balance); // confirmation of withdrawal
+            if (amount <= 0) {
+                System.out.println("Amount must be greater than zero. Please try again.");
+            } else if (amount > balance) {
+                System.out.println("Your withdrawal declined due to insufficient funds. Please try again.");
+            } else {
+                balance -= amount;
+                System.out.println("You withdrew $" + amount + ". Your new balance is: $" + balance); // confirmation of withdrawal
+                break;
         }
-    }   
-
+      }
+    }
 }

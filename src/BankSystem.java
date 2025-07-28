@@ -37,7 +37,6 @@ public class BankSystem {
                     account.deposit();
                     break;
                 case 3:
-                    System.out.println("How much would you like to withdraw? ");
                     account.withdraw();
                     break;
                 case 4:
@@ -59,11 +58,34 @@ public class BankSystem {
         
         //this is basic functionality, potential to redirect to the userLogin() method instead, so user can sign in instead of create a new account with a username that already exists
         while (true) {
+            int letterCount = 0;
+            
             System.out.print("Please create a username: ");
             username = scanner.nextLine();
 
+            for (char c : username.toCharArray()) {
+                if (Character.isLetter(c)) {
+                    letterCount++;
+                }
+            }
+
+            if (letterCount < 3) {
+                System.out.println("Username must contain at least 3 letters (a-z or A-Z)");
+                continue;
+            }
+
+            if (username.isEmpty()) {
+                System.out.println("Username cannot be blank. Please try again.");
+                continue;
+            } else if (username.length() < 3) {
+                System.out.println("Username must be at least 3 characters long.");
+                continue;
+            } else if (!username.matches("[a-zA-Z0-9_]+")) {
+                System.out.println("Username can only contain letters, numbers, and underscores.");
+                continue;
+            }
+
             boolean usernameExists = false;
-            
             //check if a username already exists in the DB system
             for (User user : users) {
                 if (user.getUsername().equals(username)) {

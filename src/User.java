@@ -1,11 +1,4 @@
 // Class representing each user cretaed, handling personal details such as usernames, and passwords
-/* --- TEST USERS ---
-User1: spncr1
-Password: Summer88
-
-User2: spncr2
-Password: Summer66
- */
 
 public class User {
     private String username;

@@ -1,47 +1,105 @@
--- Overview --
-This is a console-based banking system built using Java. The purpose of this project is to simulate basic banking operations in a secure and user-friendly manner. It provides core functionalities such as account creation, login, viewing account balance, depositing and withdrawing money, and exiting the application. The system also applies object-oriented programming principles and prepares for future enhancements such as data persistence, authentication, and GUI support.
-This project is designed to help reinforce concepts such as class design, inheritance, encapsulation, exception handling, and clean code structure using separation of concerns.
+# SimpleBank Java CLI
 
--- Features to Implement (Initial Phase) --
-Core Functionalities:
+A simple command-line Java banking application for creating accounts, logging in, and managing balances.
 
-#Create Account
-- Users can create a new account with a unique username and password.
-- The system checks for duplicate usernames and provides an error message if a username is already taken.
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Folder Structure](#folder-structure)
+- [License](#license)
+- [Author](#author)
 
-#Login System
-- Users can log in using previously created credentials.
-- The system verifies usernames and passwords against stored account data.
+## Description
 
-#Exit Program
-- Users can exit the application gracefully, with an exit message triggered by conditional logic.
+**SimpleBank Java CLI** is a terminal-based banking system built in Java. It allows users to create accounts, log in securely, and perform basic banking operations like checking balances, depositing, and withdrawing money.  
+The project was designed to practice Object-Oriented Programming (OOP) fundamentals and clean code structure, which is why logic is separated into multiple classes: `User`, `BankAccount`, `BankSystem`, and the `Main` entry point.  
+This modular approach makes the code more readable, maintainable, and scalable, and demonstrates good software engineering practices for real-world Java applications.
 
-#Account Operations (Post-Login)
-- Check Balance: Displays the current account balance.
-- Deposit: Allows the user to add money to their account.
-- Withdraw: Allows the user to withdraw money, with logic to prevent overdrawing.
-- Logout: Ends the session and returns the user to the main menu or exits the program.
+## Features
 
--- Planned Implementation Steps --
-1. Declare variables required to manage user input, account data, and menu selections.
+- 🔹 Create new user accounts with unique usernames and passwords
+- 🔹 Secure login and logout functionality
+- 🔹 Deposit and withdraw money with input validation
+- 🔹 Check account balance
+- 🔹 Clean, menu-driven CLI with clear user feedback
 
-2. Display a menu using a reusable method that shows the available options to the user.
+## Getting Started
 
-3. Capture user input to determine which operation they wish to perform.
+### Prerequisites
+- Java 17 or later
+- No external dependencies required
 
-4. Implement main operations using the following methods:
-- checkBalance()
-- deposit()
-- withdraw()
-- logout() (ends session or returns to main menu)
+### Installation
 
-5. Create an exit message that appears when the user chooses to exit the application.
+```bash
+git clone https://github.com/yourusername/simplebank-java-cli.git
+cd simplebank-java-cli
+```
 
--- User Account Requirements --
-- Both must meet specified conditions (e.g., minimum length, no special characters, etc.).
-- This validation logic will be added in a later step of the development process.
-- In early versions, account data may be stored in memory.
-- Future versions will implement file-based or database persistence for storing user data.
+### Running the App
 
--- Future Enhancements (add later) --
-- 
+Compile and run from the command line:
+
+```bash
+javac Main.java BankSystem.java User.java BankAccount.java
+java Main
+```
+
+## Usage
+
+1. Start the application.
+2. Choose to create an account or log in.
+3. Once logged in, use the menu to check your balance, deposit, or withdraw funds.
+4. You can log out and return to the main menu at any time.
+
+**Sample terminal session:**
+
+```text
+*** Welcome to SimpleBank! ***
+How may we help you?
+
+*** Main Menu ***
+1. Create Account
+2. Login
+3. Exit
+
+Enter a choice (1-3): 1
+Please create a username: alice
+Please create a password: *****
+New Account Created Successfully!
+
+--- Welcome alice! What would you like to do? ---
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Logout & Return to Main Menu
+
+Enter a choice (1-4): 2
+How much would you like to deposit? 
+100
+You deposited $100.0. Your new balance is: $100.0
+```
+
+## Folder Structure
+
+```bash
+java-banking-system-cli/
+├── Main.java
+├── BankSystem.java
+├── User.java
+├── BankAccount.java
+└── README.md
+```
+
+## License
+
+Licensed under the MIT License. See `LICENSE` for more info.
+
+## Author
+
+Spencer Fisher
+
+[https://github.com/spncr1](https://github.com/spncr1) | Portfolio
